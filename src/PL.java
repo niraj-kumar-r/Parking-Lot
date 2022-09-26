@@ -121,6 +121,23 @@ class ParkingLot {
         exitQueue.add(vehicle);
     }
 
+    public void calculateFare(long time){
+     int fees=0;   
+     while (time > 0) {
+            fees += 20; // first hour
+            time--;
+
+            if (time == 0)
+                break;
+            fees += 10; // second hour
+            time--;
+
+            if (time == 0)
+                break;
+            fees += 10 * time; // rest
+            time = 0;
+   }
+   }
     public void processExitsAndEntries() {
         if (enterQueue.size() != 0) {
             String entering = enterQueue.remove();
@@ -143,22 +160,8 @@ class ParkingLot {
                         needed = floor;
                         Payment fee = new Payment();
                         int time = (int) ((System.currentTimeMillis() - lot.startTime) * 0.001);
-                        int time1 = time;
-                        int fees = 0, elecFees = 0;
-                        while (time > 0) {
-                            fees += 20; // first hour
-                            time--;
-
-                            if (time == 0)
-                                break;
-                            fees += 10; // second hour
-                            time--;
-
-                            if (time == 0)
-                                break;
-                            fees += 10 * time; // rest
-                            time = 0;
-                        }
+                        int fees = calculateFare(time), elecFees = 0;
+                        
                         if (leaving.charAt(0) == '4') {
                             elecFees = time1 * 10;
                             fees += elecFees;
@@ -187,6 +190,7 @@ class ParkingLot {
 
                         needed.vacateLot(occupied);
                         System.out.println("Vehicle exited successfully");
+                        break;
                     }
             }
 
