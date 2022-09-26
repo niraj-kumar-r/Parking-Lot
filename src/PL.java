@@ -61,7 +61,7 @@ class ParkingLot {
             }
         }
 
-        ArrayList<Lot> lotList;
+        public ArrayList<Lot> lotList;
 
         Floor(int[] lotList) {
             this.lotList = new ArrayList<Lot>();
@@ -98,6 +98,10 @@ class ParkingLot {
             l.vehicleID = ""; // reset the lot id
             l.electricityFare = 0;
         }
+     
+        public Arraylist getLotList(){
+            return lotList;
+        }
     }
 
     Floor[] floors;
@@ -110,7 +114,7 @@ class ParkingLot {
 
     public void leaveVehicle(String vehicle) {
         for (Floor floor : floors) {
-            for (Floor.Lot lot : floor.lotList) {
+            for (Floor.Lot lot : floor.getLotList()) {
                 if (lot.vehicleID.equals(vehicle)) {
                     vehicle = lot.lotType + vehicle;
                     break;
@@ -154,7 +158,7 @@ class ParkingLot {
             Floor.Lot occupied;
             Floor needed;
             for (Floor floor : floors) {
-                for (Floor.Lot lot : floor.lotList)
+                for (Floor.Lot lot : floor.getLotList())
                     if (lot.vehicleID.equals(leaving.substring(1))) {
                         occupied = lot;
                         needed = floor;
