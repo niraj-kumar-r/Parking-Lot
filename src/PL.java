@@ -72,7 +72,13 @@ class ParkingLot {
             }
         }
 
-        public boolean freeSlots() {
+        public int freeSlots(int type) {
+            int count=0;
+            for (Lot lot : lotList) if (lot.vehicleID == "" && lot.lotType==type) count++;
+            return count;
+        }
+     
+        public boolean freeSlots(){
             for (Lot lot : lotList) if (lot.vehicleID == "") return true;
             return false;
         }
@@ -191,8 +197,8 @@ class ParkingLot {
         int[] count = new int[5];
         Arrays.fill(count, 0);
         for (Floor floor : floors) {
-            for (Floor.Lot lot : floor.lotList) {
-                if (lot.vehicleID.equals("")) count[lot.lotType]++;
+            for (int i=0; i<5; i++){
+                 count[i]+=floor.freeSlots(i);
             }
         }
         System.out.println("Free compact slots: " + count[0]);
