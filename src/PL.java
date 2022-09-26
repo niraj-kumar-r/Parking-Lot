@@ -104,9 +104,9 @@ class ParkingLot {
         }
     }
 
-    Floor[] floors;
-    Queue<String> enterQueue = new LinkedList<String>();
-    Queue<String> exitQueue = new LinkedList<String>();
+    private Floor[] floors;
+    private Queue<String> enterQueue = new LinkedList<String>();
+    private Queue<String> exitQueue = new LinkedList<String>();
 
     public void enterVehicle(String vehicle, int type) {
         enterQueue.add(type + vehicle);
