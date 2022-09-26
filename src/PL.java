@@ -121,7 +121,7 @@ class ParkingLot {
         exitQueue.add(vehicle);
     }
 
-    public void calculateFare(long time){
+    public int calculateFare(long time){
      int fees=0;   
      while (time > 0) {
             fees += 20; // first hour
